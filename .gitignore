@@ -1,0 +1,9 @@
+*
+!.gitignore
+!/alacritty/
+!/alacritty/**
+!/nvim/
+!/nvim/**
+!.bashrc
+!.tmux.conf
+
