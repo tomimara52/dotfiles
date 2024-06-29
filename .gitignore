@@ -10,3 +10,7 @@
 !init.el
 !/qtile/
 !/qtile/**
+!/i3/
+!/i3/**
+!/polybar/
+!/polybar/**
