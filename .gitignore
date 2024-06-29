@@ -8,3 +8,5 @@
 !.tmux.conf
 !init.org
 !init.el
+!/qtile/
+!/qtile/**
