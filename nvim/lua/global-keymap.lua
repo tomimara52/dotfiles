@@ -34,6 +34,10 @@ vim.keymap.set("n", "<leader>Q", ":q!<CR>")
 vim.keymap.set("n", "<leader>bd", ":bd ")
 vim.keymap.set("n", "<leader>bb", ":Buffers<CR>")
 
+vim.keymap.set("n", "<leader>ka", ":BufBoxAddBuffer<CR>", {noremap = true})
+vim.keymap.set("n", "<leader>kd", ":BufBoxRemoveBuffer<CR>", {noremap = true})
+vim.keymap.set("n", "<leader>kb", ":BufBoxDisplay<CR>", {noremap = true})
+
 vim.keymap.set("n", "<leader>e", ":edit ")
 
 vim.keymap.set("n", "<leader>m", ":Neogit<CR>")

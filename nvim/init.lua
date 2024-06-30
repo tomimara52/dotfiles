@@ -16,6 +16,7 @@ local Plug = vim.fn['plug#']
      Plug 'nvim-lua/plenary.nvim'
      Plug 'sindrets/diffview.nvim'
      Plug 'NeogitOrg/neogit'
+     Plug 'tomimara52/nvim-bufbox'
 vim.call('plug#end')
 
 vim.cmd [[colorscheme tokyodark]]
@@ -33,3 +34,4 @@ require("global-keymap")
 require("nvim-cmp")
 require("nvim-lspconfig")
 require("neogit").setup {}
+require("nvim-bufbox").setup()
