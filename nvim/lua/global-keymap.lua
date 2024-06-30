@@ -32,9 +32,7 @@ vim.keymap.set("n", "<leader>Q", ":q!<CR>")
 
 -- Buffer commands
 vim.keymap.set("n", "<leader>bd", ":bd ")
-vim.keymap.set("n", "<leader>bb", ":b ")
-vim.keymap.set("n", "<leader>bx", ":sb ")
-vim.keymap.set("n", "<leader>bv", ":vert :sb ")
+vim.keymap.set("n", "<leader>bb", ":Buffers<CR>")
 
 vim.keymap.set("n", "<leader>e", ":edit ")
 
