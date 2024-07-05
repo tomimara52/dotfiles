@@ -24,5 +24,7 @@ alias emacs="emacsclient -nc -s instance1"
 alias emacst="emacsclient -t -s instance1"
 alias sensors="sensors && echo nvidia-temp && nvidia-settings -q gpucoretemp -t 2>/dev/null"
 
+export FZF_DEFAULT_OPTS='--tmux'
+eval "$(fzf --bash)"
 
 #[ -f "/home/tomi/.ghcup/env" ] && source "/home/tomi/.ghcup/env" # ghcup-env
