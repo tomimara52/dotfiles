@@ -28,7 +28,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 -- Make signs display in number column,
 -- so text is not constantly shifting when signs appear and disappear
-vim.o.signcolumn = "number"
+vim.o.signcolumn = "yes"
 
 require("global-keymap")
 require("nvim-cmp")
