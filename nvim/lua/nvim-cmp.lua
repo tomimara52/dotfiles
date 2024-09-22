@@ -53,6 +53,14 @@
 
   require('lspconfig')['clangd'].setup {capabilities = capabilities}
   require('lspconfig')['tsserver'].setup {capabilities = capabilities}
+  require('lspconfig')['eslint'].setup({
+    on_attach = function(_, bufnr)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "EslintFixAll",
+      })
+    end,
+  })
   require('lspconfig')['html'].setup {capabilities = capabilities}
   require('lspconfig')['rust_analyzer'].setup {capabilities = capabilities}
   require('lspconfig')['hls'].setup {capabilities = capabilities}
