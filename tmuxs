@@ -1,0 +1,30 @@
+#!/bin/bash
+
+function ing1-lab() {
+    tmux new-session -d -s ing1-lab -n "editor"
+
+    tmux send-keys -t ing1-lab:editor "cd ~/Documents/FAMAF/ingenieria-software-1/frontend/" Enter
+    tmux send-keys -t ing1-lab:editor "clear" Enter
+
+    tmux new-window -t ing1-lab -n "server"
+    tmux send-keys -t ing1-lab:server "cd ~/Documents/FAMAF/ingenieria-software-1/frontend/" Enter
+    tmux send-keys -t ing1-lab:server "clear" Enter
+
+    tmux split-window -v -t ing1-lab:server
+    tmux send-keys -t ing1-lab:server.1 "cd ~/Documents/FAMAF/ingenieria-software-1/backend/" Enter
+    tmux send-keys -t ing1-lab:server.1 "clear" Enter
+}
+
+AVAILABLE_SESSIONS=(ing1-lab)
+
+if [[ " ${AVAILABLE_SESSIONS[*]} " =~ [[:space:]]$1[[:space:]] ]]; then
+    tmux has-session -t $1  2> /dev/null
+
+    if [[ $? == 1 ]]; then
+        $1
+    fi
+
+    tmux attach-session -t $1
+else
+    echo "Available sessions are: " ${AVAILABLE_SESSIONS[*]}
+fi
