@@ -5,7 +5,8 @@
 !/nvim/
 !/nvim/**
 !.bashrc
-!.tmux.conf
+!/tmux/
+!/tmux/**
 !tmuxs
 !init.org
 !init.el
