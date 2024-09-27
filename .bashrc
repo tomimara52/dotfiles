@@ -20,9 +20,13 @@ function venv_prompt() {
     [[ -n $VIRTUAL_ENV ]] && echo "${pink}-[${green}venv:${dark_green}${VIRTUAL_ENV##*/}${pink}]"
 }
 
-PS1="${pink}┌╼[${green}\t${pink}]-[${green}\w${pink}]$(venv_prompt)${on_error}\n${pink}└╼[${green}\u${dark_green}@${green}\h${pink}]${dark_green}\$${white} " 
+function git_prompt() {
+    branch=$(git branch --show-current 2>/dev/null)
+    [[ $? == 0 ]] && echo "${pink}-[${green}branch:${dark_green}$branch${pink}]"
+}
+
 function create_ps1() {
-    PS1="${pink}┌╼[${green}\t${pink}]-[${green}\w${pink}]$(venv_prompt)${on_error}\n${pink}└╼[${green}\u${dark_green}@${green}\h${pink}]${dark_green}\$${white} " 
+    PS1="${pink}┌╼[${green}\t${pink}]-[${green}\w${pink}]$(venv_prompt)$(git_prompt)${on_error}\n${pink}└╼[${green}\u${dark_green}@${green}\h${pink}]${dark_green}\$${white} " 
 }
 
 PROMPT_COMMAND=create_ps1
