@@ -21,6 +21,11 @@ function venv_prompt() {
 }
 
 PS1="${pink}┌╼[${green}\t${pink}]-[${green}\w${pink}]$(venv_prompt)${on_error}\n${pink}└╼[${green}\u${dark_green}@${green}\h${pink}]${dark_green}\$${white} " 
+function create_ps1() {
+    PS1="${pink}┌╼[${green}\t${pink}]-[${green}\w${pink}]$(venv_prompt)${on_error}\n${pink}└╼[${green}\u${dark_green}@${green}\h${pink}]${dark_green}\$${white} " 
+}
+
+PROMPT_COMMAND=create_ps1
 
 PATH="$PATH:/home/tomi/.local/bin:/home/tomi/.ghcup/bin"
 
