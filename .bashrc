@@ -14,7 +14,7 @@ red="\[\033[38;5;9m\]"
 pink="\[\033[38;5;13m\]"
 dark_green="\[\033[38;5;2m\]"
 white="\[\033[38;5;7m\]"
-on_error="\[\$([[ \$? != 0 ]] && echo \"-[${red}✗${pink}]\")\]"
+on_error="\[\$([[ \$? != 0 ]] && echo \"${pink}-[${red}✗${pink}]\")\]"
 
 function venv_prompt() {
     [[ -n $VIRTUAL_ENV ]] && echo "${pink}-[${green}venv:${dark_green}${VIRTUAL_ENV##*/}${pink}]"
