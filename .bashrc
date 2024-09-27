@@ -7,6 +7,8 @@
 
 alias ls='ls --color=auto'
 
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 green="\[\033[38;5;10m\]"
 red="\[\033[38;5;9m\]"
 pink="\[\033[38;5;13m\]"
@@ -14,7 +16,11 @@ dark_green="\[\033[38;5;2m\]"
 white="\[\033[38;5;7m\]"
 on_error="\[\$([[ \$? != 0 ]] && echo \"-[${red}✗${pink}]\")\]"
 
-PS1="${pink}┌╼[${green}\t${pink}]-[${green}\w${pink}]${on_error}\n${pink}└╼[${green}\u${dark_green}@${green}\h${pink}]${dark_green}\$${white} " 
+function venv_prompt() {
+    [[ -n $VIRTUAL_ENV ]] && echo "${pink}-[${green}venv:${dark_green}${VIRTUAL_ENV##*/}${pink}]"
+}
+
+PS1="${pink}┌╼[${green}\t${pink}]-[${green}\w${pink}]$(venv_prompt)${on_error}\n${pink}└╼[${green}\u${dark_green}@${green}\h${pink}]${dark_green}\$${white} " 
 
 PATH="$PATH:/home/tomi/.local/bin:/home/tomi/.ghcup/bin"
 
