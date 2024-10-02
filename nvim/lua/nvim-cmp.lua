@@ -52,7 +52,7 @@
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   require('lspconfig')['clangd'].setup {capabilities = capabilities}
-  require('lspconfig')['tsserver'].setup {capabilities = capabilities}
+  require('lspconfig')['ts_ls'].setup {capabilities = capabilities}
   require('lspconfig')['eslint'].setup({
     on_attach = function(_, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
