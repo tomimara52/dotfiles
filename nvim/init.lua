@@ -15,7 +15,6 @@ vim.call('plug#begin')
   Plug('nvim-lua/plenary.nvim')
   Plug('sindrets/diffview.nvim')
   Plug('NeogitOrg/neogit')
-  Plug('tomimara52/nvim-bufbox')
   Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
 vim.call('plug#end')
 
@@ -34,4 +33,3 @@ require("global-keymap")
 require("nvim-cmp")
 require("nvim-lspconfig")
 require("neogit").setup {}
-require("nvim-bufbox").setup()
