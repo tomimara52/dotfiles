@@ -11,12 +11,12 @@ vim.call('plug#begin')
   Plug('hrsh7th/cmp-vsnip')
   Plug('hrsh7th/vim-vsnip')
   Plug('tiagovla/tokyodark.nvim')
-  Plug('junegunn/fzf.vim')
   Plug('rafamadriz/friendly-snippets')
   Plug('nvim-lua/plenary.nvim')
   Plug('sindrets/diffview.nvim')
   Plug('NeogitOrg/neogit')
   Plug('tomimara52/nvim-bufbox')
+  Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
 vim.call('plug#end')
 
 vim.cmd [[colorscheme tokyodark]]

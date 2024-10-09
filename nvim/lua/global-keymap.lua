@@ -19,10 +19,22 @@ vim.keymap.set("n", "<leader>w=", "<C-w>=", {silent = true, remap = true})
 vim.keymap.set("n", "<leader>gn", "gt", {silent = true})
 vim.keymap.set("n", "<leader>gp", "gT", {silent = true})
 
--- File finding with fzf
-vim.keymap.set("n", "<leader>fg", ":GFiles<CR>", {noremap = true})
-vim.keymap.set("n", "<leader>ff", ":Files<CR>", {noremap = true})
-vim.keymap.set("n", "<leader>fr", ":Rg<CR>", {noremap = true})
+-- File finding with telescope
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-k>"] = "move_selection_previous",
+        ["<C-j>"] = "move_selection_next",
+      }
+    }
+  }
+}
+
+local builtin = require('telescope.builtin')
+vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Telescope find git files" })
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files in directory" })
+vim.keymap.set("n", "<leader>fr", builtin.live_grep, { desc = "Telescope find string ignoring .gitignore" })
 
 -- Save and exit commands
 vim.keymap.set("n", "<leader>s", ":w<CR>")
@@ -32,7 +44,7 @@ vim.keymap.set("n", "<leader>Q", ":q!<CR>")
 
 -- Buffer commands
 vim.keymap.set("n", "<leader>bd", ":bd ")
-vim.keymap.set("n", "<leader>bb", ":Buffers<CR>")
+vim.keymap.set("n", "<leader>bb", builtin.buffers, { desc = "Telescope find neovim buffer" })
 
 vim.keymap.set("n", "<leader>ka", ":BufBoxAddBuffer<CR>", {noremap = true})
 vim.keymap.set("n", "<leader>kd", ":BufBoxRemoveBuffer<CR>", {noremap = true})
