@@ -28,7 +28,13 @@ require('telescope').setup{
         ["<C-j>"] = "move_selection_next",
       }
     }
-  }
+  },
+  pickers = {
+    buffers = {
+      ignore_current_buffer = true,
+      sort_lastused = true,
+    },
+  },
 }
 
 local builtin = require('telescope.builtin')
