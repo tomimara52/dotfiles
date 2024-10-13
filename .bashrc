@@ -42,4 +42,6 @@ alias sensors="sensors && echo nvidia-temp && nvidia-settings -q gpucoretemp -t 
 export FZF_DEFAULT_OPTS='--tmux'
 eval "$(fzf --bash)"
 
+source /usr/share/git/completion/git-completion.bash
+
 #[ -f "/home/tomi/.ghcup/env" ] && source "/home/tomi/.ghcup/env" # ghcup-env
