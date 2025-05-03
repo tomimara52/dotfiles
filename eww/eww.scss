@@ -2,8 +2,8 @@ $background: #111;
 $background-dark: #191926;
 $background-secondary: #444;
 $highlight: #03c03c;
-$highlight2: #ff1493
-$light: #fff;
+$highlight2: #ff1493;
+$light: #009F6B;
 
 * {
   all: unset;
@@ -54,6 +54,10 @@ scale trough {
   min-width: 50px;
 }
 
+.netlabel {
+  color: $light;
+}
+
 .neticon {
   font-size: 16;
   margin: 0 12px 0 4;
@@ -73,6 +77,7 @@ scale trough {
 
 .volumecontrol-volume {
   min-width: 180px;
+  color: $light;
 }
 
 .volumecontrol-volslider {
@@ -122,6 +127,7 @@ scale trough {
 
 .datelabel {
   margin: 0 0 0 10px;
+  color: $light;
 }
 
 .workspaces {

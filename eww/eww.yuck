@@ -106,7 +106,7 @@
                 (revealer
                     :transition "slideleft"
                     :reveal net-slider
-                    (label :text {ssid-name})
+                    (label :text {ssid-name} :class "netlabel")
                 )
             )
         )
