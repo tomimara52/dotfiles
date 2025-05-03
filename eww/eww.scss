@@ -2,6 +2,7 @@ $background: #111;
 $background-dark: #191926;
 $background-secondary: #444;
 $highlight: #03c03c;
+$highlight2: #ff1493
 $light: #fff;
 
 * {
@@ -34,6 +35,10 @@ tooltip {
 
 .generic-container {
   background-color: $background-dark;
+}
+
+.separator {
+  color: $highlight2;
 }
 
 .power {

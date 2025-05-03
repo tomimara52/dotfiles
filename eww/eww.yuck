@@ -158,9 +158,9 @@
         :class "generic-container"
         :space-evenly false
         :spacing 10
-        (label :text "[")
+        (label :text "[" :class "separator")
         (children)
-        (label :text "]")
+        (label :text "]" :class "separator")
     )
 )
 
