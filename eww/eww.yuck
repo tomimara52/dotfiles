@@ -122,7 +122,7 @@
             :space-evenly false
             (label
                 :text {formattime(EWW_TIME, "%T")}
-                :class "datelabel"
+                :class "timelabel"
                 :halign "center"
             )
             (revealer
@@ -130,8 +130,8 @@
                 :reveal date-slider
                 :halign "center"
                 (label
-                    :text {formattime(EWW_TIME, "%F")}
                     :class "datelabel"
+                    :text {formattime(EWW_TIME, "%F")}
                 )
             )
         )
@@ -157,8 +157,10 @@
         :orientation "horizontal"
         :class "generic-container"
         :space-evenly false
-        :spacing 15
+        :spacing 10
+        (label :text "[")
         (children)
+        (label :text "]")
     )
 )
 
@@ -174,7 +176,7 @@
     (box
         :orientation "horizontal"
         :space-evenly false
-        :spacing 15 
+        :spacing 10 
         :halign "end"
         (generic-container
             (net)
@@ -207,14 +209,17 @@
     (centerbox
         :orientation "horizontal"
         :class "statusbar"
-        (systray
-            :halign "start"
-            :icon-size 20 
-            :space-evenly false
-            :spacing 2
-            :class "systray"
+        (generic-container
+            (systray
+                :halign "center"
+                :icon-size 20 
+                :space-evenly false
+                :spacing 5
+            )
         )
-        (literal :content {workspaces} :valign "center")
+        (generic-container 
+            (literal :content {workspaces} :valign "center")
+        )
         (right)
     )
 )

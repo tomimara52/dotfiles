@@ -41,11 +41,11 @@ tooltip {
 
 .generic-container {
   background-color: $background-dark;
-  padding: 0 20px 0 20px;
 }
 
 .power {
   padding: 0 8px 0 4px;
+  color: $highlight
 }
 
 scale trough {
@@ -59,18 +59,18 @@ scale trough {
 .neticon {
   font-size: 16;
   margin: 0 12px 0 4;
-  color: $light;
+  color: $highlight;
 }
 
 .volslider trough highlight {
-  background-color: $highlight;
+  background-color: $light;
   border-radius: 10px;
 }
 
 .volicon {
   font-size: 16;
   margin: 0 12px 0 0;
-  color: $light;
+  color: $highlight;
 }
 
 .volumecontrol-volume {
@@ -103,26 +103,26 @@ scale trough {
 }
 
 .brightslider trough highlight {
-  background-color: $highlight;
+  background-color: $light;
   border-radius: 10px;
 }
 
 .brighticon {
   font-size: 16;
   margin: 0 10px 0 0;
-  color: $light;
+  color: $highlight;
 }
 
 .batteryicon {
   font-size: 16;
-  color: $light;
+  color: $highlight;
+}
+
+.timelabel {
+  color: $highlight;
 }
 
 .datelabel {
-  color: $light;
-}
-
-revealer .datelabel {
   margin: 0 0 0 10px;
 }
 
@@ -132,10 +132,6 @@ revealer .datelabel {
 
 .workspaces button {
   padding: 0 10px 0 5px;
-}
-
-.systray {
-  padding: 0 0 0 10px;
 }
 
 .sysmonitor {
