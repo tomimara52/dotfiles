@@ -1,7 +1,7 @@
 $background: #111;
 $background-dark: #191926;
 $background-secondary: #444;
-$highlight: #fff;
+$highlight: #ff00e1;
 $light: #fff;
 /*
 $background: #2A2E3C;
@@ -27,7 +27,7 @@ $light: #EEE5E9;
 .volumecontrol {
   background-color: $background-dark;
   font-family: JetBrainsMono Nerd Font;
-  border-color: $highlight;
+  border-color: $light;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px;
@@ -141,7 +141,7 @@ revealer .datelabel {
 .sysmonitor {
   background-color: $background-dark;
   font-family: JetBrainsMono Nerd Font;
-  border-color: $highlight;
+  border-color: $light;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px;
@@ -157,6 +157,11 @@ revealer .datelabel {
 
 .circular {
   background-color: $background-secondary;
+  color: $highlight;
+}
+
+.circular label {
+  color: $light;
 }
 
 menu {

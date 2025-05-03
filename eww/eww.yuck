@@ -291,13 +291,13 @@
     )
 )
 
-(defwidget generic-circular [v]
+(defwidget generic-circular [v text]
     (circular-progress
         :class "circular"
         :value {v}
         :thickness 5
         :start-at 75
-        (children)
+        (label :text {text})
     )
 )
 
@@ -320,11 +320,11 @@
                 :class "sysmonitor-batram"
                 (generic-circular
                     :v {EWW_BATTERY.BAT0.capacity} 
-                    "Battery"
+                    :text "Battery"
                 )
                 (generic-circular
                     :v {EWW_RAM.used_mem_perc}
-                    "RAM"
+                    :text "RAM"
                 )
             )
             (box
@@ -332,19 +332,19 @@
                 :spacing 8
                 (generic-circular
                     :v {EWW_CPU.cores[0].usage}
-                    "0"
+                    :text "0"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[1].usage}
-                    "1"
+                    :text "1"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[2].usage}
-                    "2"
+                    :text "2"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[3].usage}
-                    "3"
+                    :text "3"
                 )
             )
             (box
@@ -352,19 +352,19 @@
                 :spacing 8
                 (generic-circular
                     :v {EWW_CPU.cores[4].usage}
-                    "4"
+                    :text "4"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[5].usage}
-                    "5"
+                    :text "5"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[6].usage}
-                    "6"
+                    :text "6"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[7].usage}
-                    "7"
+                    :text "7"
                 )
             )
         )
