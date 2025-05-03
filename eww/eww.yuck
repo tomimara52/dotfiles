@@ -1,0 +1,372 @@
+(defvar brightness-slider false)
+(defpoll brightness :initial 0 :interval "1s"
+                "xbacklight -get")
+
+(defvar volume-slider false)
+(defpoll volume :initial 0 :interval "1s"
+                "amixer -D pulse get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1")
+(defpoll volume-muted :initial false :interval "1s"
+    "[[ $(amixer -D pulse get Master | grep '%' | head -n 1 | cut -d '[' -f 3) =~ on ]] && echo 'false' || echo 'true'"
+)
+
+(defpoll mic :initial 0
+             :interval "1s"
+    "amixer get Dmic0 | grep '%' | head -n 1 | cut -d '%' -f 1 | cut -d '[' -f 2"
+)
+(defpoll micmuted :initial false
+                  :interval "1s"
+    "[[ $(amixer get Dmic0 | grep '%' | head -n 1 | cut -d '[' -f 4 | cut -d ']' -f 1) =~ on ]] && echo false || echo true"
+)
+
+(defpoll batteryicon :interval "3s"
+                 "./bin/battery.sh")
+
+(defvar date-slider false)
+
+(defvar net-slider false)
+(defpoll ssid-name :interval "5s"
+                   "iwgetid -r")
+
+(deflisten workspaces
+    "./workspaces/target/release/workspaces"
+)
+
+(defwidget volume []
+    (eventbox
+        :onhover "eww update volume-slider=true"
+        :onhoverlost "eww update volume-slider=false"
+        :tooltip "Volume: ${volume}%"
+        (box
+            :orientation "horizontal"
+            :space-evenly false
+            (button 
+                :onclick "eww open volumecontrol"
+                (label 
+                    :text {volume-muted ? "" : volume < 66 ? (volume < 33 ? "" : "") : ""}
+                    :class "volicon"
+                )
+            )
+            (revealer
+                :transition "slideleft"
+                :reveal volume-slider
+                (scale
+                    :class "volslider"
+                    :min 0
+                    :max 101
+                    :orientation "horizontal"
+                    :value {volume}
+                    :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+                )
+            )
+        )
+    )
+)
+
+(defwidget brightness []
+    (eventbox
+        :onhover "eww update brightness-slider=true"
+        :onhoverlost "eww update brightness-slider=false"
+        :tooltip "Brightness: ${brightness}%"
+        (box
+            :orientation "horizontal"
+            :space-evenly false
+            (label 
+                :text ""
+                :class "brighticon"
+            )
+            (revealer
+                :transition "slideleft"
+                :reveal brightness-slider
+                (scale
+                    :class "brightslider"
+                    :min 0
+                    :max 101
+                    :orientation "horizontal"
+                    :value {brightness}
+                    :onchange "xbacklight -set {}"
+                )
+            )
+        )
+    )
+)
+
+(defwidget net []
+    (eventbox
+        :onhover "eww update net-slider=true"
+        :onhoverlost "eww update net-slider=false"
+        (button
+            :onclick "hyprctl dispatch exec [stayfocused\\; float] \"alacritty -e 'nmtui'\""
+            (box
+                :orientation "horizontal"
+                :space-evenly false
+                (label 
+                    :text ""
+                    :class "neticon"
+                )
+                (revealer
+                    :transition "slideleft"
+                    :reveal net-slider
+                    (label :text {ssid-name})
+                )
+            )
+        )
+    )
+)
+
+(defwidget time []
+    (eventbox
+        :onhover "eww update date-slider=true"
+        :onhoverlost "eww update date-slider=false"
+        (box
+            :orientation "horizontal"
+            :space-evenly false
+            (label
+                :text {formattime(EWW_TIME, "%T")}
+                :class "datelabel"
+                :halign "center"
+            )
+            (revealer
+                :transition "slideleft"
+                :reveal date-slider
+                :halign "center"
+                (label
+                    :text {formattime(EWW_TIME, "%F")}
+                    :class "datelabel"
+                )
+            )
+        )
+    )
+)
+
+(defwidget battery []
+    (button
+        :onclick "eww open sysmonitor"
+        (box
+            :orientation "horizontal"
+            :tooltip "${EWW_BATTERY.BAT0.capacity}% (${EWW_BATTERY.BAT0.status})"
+            (label 
+                :text {batteryicon}
+                :class "batteryicon"
+            )
+        )
+    )
+)
+
+(defwidget generic-container []
+    (box
+        :orientation "horizontal"
+        :class "generic-container"
+        :space-evenly false
+        :spacing 15
+        (children)
+    )
+)
+
+(defwidget power []
+    (button
+        :onclick "hyprctl dispatch exec \"rofi -show power-menu -modi power-menu:rofi-power-menu\""
+        :class "power"
+        (label :text "⏻")
+    )
+)
+
+(defwidget right []
+    (box
+        :orientation "horizontal"
+        :space-evenly false
+        :spacing 15 
+        :halign "end"
+        (generic-container
+            (net)
+        )
+        (generic-container
+            (volume)
+            (brightness)
+        )
+        (generic-container
+            (battery)
+        )
+        (generic-container
+            (time)
+        )
+        (generic-container
+            (power)
+        )
+    )
+)
+
+(defwindow statusbar
+    :monitor 0
+    :geometry (geometry :x "0%"
+                        :y "3px"
+                        :width "99.5%"
+                        :height "26px"
+                        :anchor "top center")
+    :exclusive true
+    :namespace "statusbar"
+    (centerbox
+        :orientation "horizontal"
+        :class "statusbar"
+        (systray
+            :halign "start"
+            :icon-size 20 
+            :space-evenly false
+            :spacing 2
+            :class "systray"
+        )
+        (literal :content {workspaces} :valign "center")
+        (right)
+    )
+)
+
+(defwidget volumecontrol-volume []
+    (box
+        :orientation "horizontal"
+        :space-evenly false
+        :halign "center"
+        :class "volumecontrol-volume"
+        :tooltip "Volume: ${volume}%"
+        (label 
+            :text {volume-muted ? "" : volume < 66 ? (volume < 33 ? "" : "") : ""}
+            :class "volumecontrol-volicon"
+        )
+        (scale
+            :class "volumecontrol-volslider"
+            :min 0
+            :max 101
+            :orientation "horizontal"
+            :value {volume}
+            :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+            :hexpand true
+        )
+        (label
+            :text "${volume}%"
+        )
+    )
+)
+
+(defwidget volumecontrol-mic []
+    (box
+        :orientation "horizontal"
+        :space-evenly false
+        :halign "center"
+        :class "volumecontrol-volume"
+        :tooltip "Mic: ${mic}%"
+        (label 
+            :text {micmuted ? "" : ""} 
+            :class "volumecontrol-micicon"
+        )
+        (scale
+            :class "volumecontrol-volslider"
+            :min 0
+            :max 101
+            :orientation "horizontal"
+            :value {mic}
+            :onchange "amixer -q set Dmic0 {}%"
+            :hexpand true
+        )
+        (label
+            :text "${mic}%"
+        )
+    )
+)
+
+(defwindow volumecontrol
+    :monitor 0
+    :geometry (geometry :x "100px"
+                        :y "0px"
+                        :width "200px"
+                        :height "100px"
+                        :anchor "top right")
+    :exclusive true
+    :namespace "volumecontrol"
+    (eventbox
+        :class "volumecontrol"
+        :onhoverlost "eww close volumecontrol"
+        (box
+            :orientation "vertical"
+            (volumecontrol-volume)
+            (volumecontrol-mic)
+        )
+    )
+)
+
+(defwidget generic-circular [v]
+    (circular-progress
+        :class "circular"
+        :value {v}
+        :thickness 5
+        :start-at 75
+        (children)
+    )
+)
+
+
+(defwindow sysmonitor
+    :monitor 0
+    :geometry (geometry :x "50px"
+                        :y "0px"
+                        :width "300px"
+                        :height "300px"
+                        :anchor "top right")
+    :exclusive true
+    :namespace "sysmonitor"
+    (eventbox
+        :class "sysmonitor"
+        :onhoverlost "eww close sysmonitor"
+        (box 
+            :orientation "vertical"
+            (box
+                :class "sysmonitor-batram"
+                (generic-circular
+                    :v {EWW_BATTERY.BAT0.capacity} 
+                    "Battery"
+                )
+                (generic-circular
+                    :v {EWW_RAM.used_mem_perc}
+                    "RAM"
+                )
+            )
+            (box
+                :class "sysmonitor-cpu"
+                :spacing 8
+                (generic-circular
+                    :v {EWW_CPU.cores[0].usage}
+                    "0"
+                )
+                (generic-circular
+                    :v {EWW_CPU.cores[1].usage}
+                    "1"
+                )
+                (generic-circular
+                    :v {EWW_CPU.cores[2].usage}
+                    "2"
+                )
+                (generic-circular
+                    :v {EWW_CPU.cores[3].usage}
+                    "3"
+                )
+            )
+            (box
+                :class "sysmonitor-cpu"
+                :spacing 8
+                (generic-circular
+                    :v {EWW_CPU.cores[4].usage}
+                    "4"
+                )
+                (generic-circular
+                    :v {EWW_CPU.cores[5].usage}
+                    "5"
+                )
+                (generic-circular
+                    :v {EWW_CPU.cores[6].usage}
+                    "6"
+                )
+                (generic-circular
+                    :v {EWW_CPU.cores[7].usage}
+                    "7"
+                )
+            )
+        )
+    )
+)
