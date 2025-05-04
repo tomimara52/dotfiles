@@ -24,8 +24,10 @@
 (defvar date-slider false)
 
 (defvar net-slider false)
+(defpoll net-icon :interval "5s"
+                   "./bin/net.sh | cut -d ' ' -f 1")
 (defpoll ssid-name :interval "5s"
-                   "iwgetid -r")
+                   "./bin/net.sh | cut -d ' ' -f 2")
 
 (deflisten workspaces
     "./workspaces/target/release/workspaces"
@@ -100,8 +102,9 @@
                 :orientation "horizontal"
                 :space-evenly false
                 (label 
-                    :text ""
+                    :text {net-icon} 
                     :class "neticon"
+                    :style {net-icon == "󰈀" ? "margin: 0 8px 0 4px;" : ""}
                 )
                 (revealer
                     :transition "slideleft"
