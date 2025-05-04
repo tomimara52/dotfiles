@@ -199,9 +199,9 @@
 
 (defwidget player-wrapper []
     (player 
-        :artist {replace(player-state, '&quot;', "'")["artist"]} 
-        :title {replace(player-state, '&quot;', "'")["title"]} 
-        :status {replace(player-state, '&quot;', "'")["status"]} 
+        :artist {player-state == "" ? "" : replace(player-state, '&quot;', "'")["artist"]} 
+        :title {player-state == "" ? "" : replace(player-state, '&quot;', "'")["title"]} 
+        :status {player-state == "" ? "" : replace(player-state, '&quot;', "'")["status"]} 
     )
 )
 
