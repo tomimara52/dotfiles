@@ -3,10 +3,13 @@
                 "xbacklight -get")
 
 (defvar volume-slider false)
-(defpoll volume :initial 0 :interval "1s"
-                "amixer -D pulse get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1")
-(defpoll volume-muted :initial false :interval "1s"
-    "[[ $(amixer -D pulse get Master | grep '%' | head -n 1 | cut -d '[' -f 3) =~ on ]] && echo 'false' || echo 'true'"
+(deflisten volume 
+    :initial 0 
+    `./bin/volume.sh volume`
+)
+(deflisten volume-muted 
+    :initial false 
+    `./bin/volume.sh muted`
 )
 
 (defpoll mic :initial 0
