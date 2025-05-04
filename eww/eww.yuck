@@ -29,6 +29,12 @@
 (defpoll ssid-name :interval "5s"
                    "./bin/net.sh | cut -d ' ' -f 2")
 
+(defvar player-slider false)
+(deflisten player-state
+    :initial "{\"status\": \"\", \"artist\": \"\", \"title\": \"\"}"
+    `playerctl -F metadata --format '{"status": "{{markup_escape(status)}}", "artist": "{{markup_escape(artist)}}", "title": "{{markup_escape(title)}}"}'`
+)
+
 (deflisten workspaces
     "./workspaces/target/release/workspaces"
 )
@@ -141,6 +147,61 @@
     )
 )
 
+(defwidget player [status title artist]
+    (generic-container
+        :visible {status == "Playing" || status == "Paused"}
+        (eventbox
+            :onhover "eww update player-slider=true"
+            :onhoverlost "eww update player-slider=false"
+            (box
+                :orientation "horizontal"
+                :space-evenly false
+                (revealer
+                    :transition "slideright"
+                    :reveal player-slider
+                    (box
+                        :space-evenly false
+                        :spacing 8
+                        :class "player-controls"
+                        (button
+                            :onclick "playerctl previous"
+                            (label :text "󰁎")
+                        )
+                        (button
+                            :onclick "playerctl play-pause"
+                            (label :text {status == "Playing" ? "󰏤" : ""})
+                        )
+                        (button
+                            :onclick "playerctl next"
+                            (label :text "󰁕")
+                        )
+                    )
+                )
+                (box
+                    :class "player-title"
+                    (label :text {title})
+                )
+                (revealer
+                    :transition "slideleft"
+                    :reveal player-slider
+                    (box
+                        :class "player-artist"
+                        (label :text {artist})
+                    )
+                )
+            )
+        )
+    )
+)
+
+(defwidget player-wrapper []
+    (player 
+        :artist {replace(player-state, '&quot;', "'")["artist"]} 
+        :title {replace(player-state, '&quot;', "'")["title"]} 
+        :status {replace(player-state, '&quot;', "'")["status"]} 
+    )
+)
+
 (defwidget battery []
     (button
         :onclick "eww open sysmonitor"
@@ -155,12 +216,13 @@
     )
 )
 
-(defwidget generic-container []
+(defwidget generic-container [?visible]
     (box
         :orientation "horizontal"
         :class "generic-container"
         :space-evenly false
         :spacing 10
+        :visible {visible ?: true}
         (label :text "[" :class "separator")
         (children)
         (label :text "]" :class "separator")
@@ -212,13 +274,17 @@
     (centerbox
         :orientation "horizontal"
         :class "statusbar"
-        (generic-container
-            (systray
-                :halign "center"
-                :icon-size 20 
-                :space-evenly false
-                :spacing 5
+        (box
+            :space-evenly false
+            (generic-container
+                (systray
+                    :halign "center"
+                    :icon-size 20 
+                    :space-evenly false
+                    :spacing 5
+                )
             )
+            (player-wrapper)
         )
         (generic-container 
             (literal :content {workspaces} :valign "center")

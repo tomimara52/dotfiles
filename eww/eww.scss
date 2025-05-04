@@ -164,6 +164,20 @@ scale trough {
   color: $light;
 }
 
+.player-controls {
+  color: $light;
+  margin: 0 8px 0 0;
+}
+
+.player-title {
+  color: $highlight;
+}
+
+.player-artist {
+  color: $light;
+  margin: 0 0 0 8px;
+}
+
 menu {
   background-color: $background-dark;
   padding: 10px;
