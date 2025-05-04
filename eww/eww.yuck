@@ -1,6 +1,8 @@
 (defvar brightness-slider false)
-(defpoll brightness :initial 0 :interval "1s"
-                "xbacklight -get")
+(deflisten brightness 
+    :initial 0 
+    `./bin/brightness.sh`
+)
 
 (defvar volume-slider false)
 (deflisten volume 
