@@ -12,16 +12,18 @@ $secondary-dark: #ba0063;
 
 .statusbar {
   background-color: $background-dark;
-  font-family: JetBrainsMono Nerd Font;
+  font-family: IosevkaTerm Nerd Font;
   border-color: $background-dark;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px;
+  font-size: 14;
 }
 
 .volumecontrol {
   background-color: $background-dark;
-  font-family: JetBrainsMono Nerd Font;
+  font-family: IosevkaTerm Nerd Font;
+  font-size: 14;
   border-color: $primary-dark;
   border-width: 1px;
   border-style: solid;
@@ -30,7 +32,8 @@ $secondary-dark: #ba0063;
 
 tooltip {
   background-color: $background;
-  font-family: JetBrainsMono Nerd Font;
+  font-family: IosevkaTerm Nerd Font;
+  font-size: 14;
   color: $primary-dark;
 }
 
@@ -141,7 +144,8 @@ scale trough {
 
 .sysmonitor {
   background-color: $background-dark;
-  font-family: JetBrainsMono Nerd Font;
+  font-family: IosevkaTerm Nerd Font;
+  font-size: 14;
   border-color: $primary-dark;
   border-width: 1px;
   border-style: solid;
