@@ -3,7 +3,7 @@ use hyprland::data::{Monitor, Workspaces};
 use hyprland::prelude::*;
 use hyprland::shared::HyprError;
 
-const N_WORKSPACES: usize = 5;
+const N_WORKSPACES: i32 = 5;
 const FOCUSED_WORKSPACE: &str = "(label \
                                     :text \"\" \
                                  )";
@@ -34,18 +34,17 @@ enum WorkspaceState {
 
 fn get_workspaces_state() -> Result<Vec<WorkspaceState>, HyprError> {
 
-    let mut workspaces = vec![WorkspaceState::Inactive; N_WORKSPACES];
+    let mut workspaces = vec![WorkspaceState::Inactive; N_WORKSPACES as usize];
 
     for w in Workspaces::get()? {
-        let id: usize = w.id.try_into().unwrap();
-        if id > 0 && id <= N_WORKSPACES {
-            workspaces[id - 1] = WorkspaceState::Active;
+        if w.id > 0 && w.id <= N_WORKSPACES {
+            workspaces[(w.id - 1) as usize] = WorkspaceState::Active;
         }
     }
 
-    let client_workspace_id: usize = Monitor::get_active()?.active_workspace.id.try_into().unwrap();
+    let client_workspace_id = Monitor::get_active()?.active_workspace.id;
     if client_workspace_id > 0 && client_workspace_id <= N_WORKSPACES {
-        workspaces[client_workspace_id - 1] = WorkspaceState::Focused;
+        workspaces[(client_workspace_id - 1) as usize] = WorkspaceState::Focused;
     }
 
     Ok(workspaces)
