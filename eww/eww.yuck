@@ -14,13 +14,13 @@
     `./bin/volume.sh muted`
 )
 
-(defpoll mic :initial 0
-             :interval "1s"
-    "amixer get Dmic0 | grep '%' | head -n 1 | cut -d '%' -f 1 | cut -d '[' -f 2"
+(deflisten mic 
+    :initial 0
+    `./bin/mic.sh mic`
 )
-(defpoll micmuted :initial false
-                  :interval "1s"
-    "[[ $(amixer get Dmic0 | grep '%' | head -n 1 | cut -d '[' -f 4 | cut -d ']' -f 1) =~ on ]] && echo false || echo true"
+(deflisten micmuted 
+    :initial false
+    `./bin/mic.sh muted`
 )
 
 (defpoll batteryicon :interval "3s"
