@@ -35,9 +35,17 @@
                    "./bin/net.sh | cut -d ' ' -f 2")
 
 (defvar player-slider false)
-(deflisten player-state
-    :initial "{\"status\": \"\", \"artist\": \"\", \"title\": \"\"}"
-    `playerctl -F metadata --format '{"status": "{{markup_escape(status)}}", "artist": "{{markup_escape(artist)}}", "title": "{{markup_escape(title)}}"}'`
+(deflisten player-status
+    :initial ""
+    `playerctl -F metadata --format '{{status}}'`
+)
+(deflisten player-title
+    :initial ""
+    `playerctl -F metadata --format '{{title}}'`
+)
+(deflisten player-artist
+    :initial ""
+    `playerctl -F metadata --format '{{artist}}'`
 )
 
 (deflisten workspaces
@@ -201,9 +209,9 @@
 
 (defwidget player-wrapper []
     (player 
-        :artist {player-state == "" ? "" : replace(player-state, '&quot;', "'")["artist"]} 
-        :title {player-state == "" ? "" : replace(player-state, '&quot;', "'")["title"]} 
-        :status {player-state == "" ? "" : replace(player-state, '&quot;', "'")["status"]} 
+        :artist {player-artist}
+        :title {player-title}
+        :status {player-status}
     )
 )
 
