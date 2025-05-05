@@ -64,22 +64,30 @@ fn get_widgets(workspaces: Vec<WorkspaceState>) -> String {
     }))
 }
 
-fn print_widgets() {
+fn print_widgets(special_activated: bool) {
     if let Ok(w) = get_workspaces_state() {
-        println!("{}", get_widgets(w));
+        let mut widgets = get_widgets(w);
+
+        if special_activated {
+            widgets = widgets.replace("", "");
+        }
+
+        println!("{}", widgets);
     }
 }
 
 fn main() -> hyprland::Result<()> {
     // print so eww can get an initial value
-    print_widgets();
+    print_widgets(false);
 
     let mut event_listener = EventListener::new();
 
-    event_listener.add_workspace_changed_handler(|_data| print_widgets());
-    event_listener.add_workspace_added_handler(|_data| print_widgets());
-    event_listener.add_workspace_moved_handler(|_data| print_widgets());
-    event_listener.add_workspace_deleted_handler(|_data| print_widgets());
+    event_listener.add_workspace_changed_handler(|_data| print_widgets(false));
+    event_listener.add_workspace_added_handler(|_data| print_widgets(false));
+    event_listener.add_workspace_moved_handler(|_data| print_widgets(false));
+    event_listener.add_workspace_deleted_handler(|_data| print_widgets(false));
+    event_listener.add_changed_special_handler(|_data| print_widgets(true));
+    event_listener.add_special_removed_handler(|_data| print_widgets(false));
 
     event_listener.start_listener()?;
 
