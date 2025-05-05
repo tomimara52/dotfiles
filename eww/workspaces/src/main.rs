@@ -18,6 +18,7 @@ const INACTIVE_WORKSPACE: &str = "(label \
                                   )";
 const LABEL_BUTTON: &str = "(button \
                             :onclick \"hyprctl dispatch workspace {id}\" \
+                            :class \"button-dark\" \
                             {label} \
                          )";
 const OUTER_BOX: &str = "(box \

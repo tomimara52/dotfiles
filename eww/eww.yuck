@@ -64,7 +64,7 @@
                 :onclick "eww open volumecontrol"
                 (label 
                     :text {volume-muted ? "" : volume < 66 ? (volume < 33 ? "" : "") : ""}
-                    :class "volicon"
+                    :class "volicon ${volume-slider ? "dark" : ""}"
                 )
             )
             (revealer
@@ -93,7 +93,7 @@
             :space-evenly false
             (label 
                 :text ""
-                :class "brighticon"
+                :class "brighticon ${brightness-slider ? "dark" : ""}"
             )
             (revealer
                 :transition "slideleft"
@@ -122,7 +122,7 @@
                 :space-evenly false
                 (label 
                     :text {net-icon} 
-                    :class "neticon"
+                    :class "neticon ${net-slider ? "dark" : ""}"
                     :style {net-icon == "󰈀" ? "margin: 0 8px 0 4px;" : ""}
                 )
                 (revealer
@@ -178,14 +178,17 @@
                         :class "player-controls"
                         (button
                             :onclick "playerctl previous"
+                            :class "button-dark"
                             (label :text "󰁎")
                         )
                         (button
                             :onclick "playerctl play-pause"
+                            :class "button-dark"
                             (label :text {status == "Playing" ? "󰏤" : ""})
                         )
                         (button
                             :onclick "playerctl next"
+                            :class "button-dark"
                             (label :text "󰁕")
                         )
                     )
@@ -218,6 +221,7 @@
 (defwidget battery []
     (button
         :onclick "eww open sysmonitor"
+        :class "button-dark"
         (box
             :orientation "horizontal"
             :tooltip "${EWW_BATTERY.BAT0.capacity}% (${EWW_BATTERY.BAT0.status})"
@@ -245,7 +249,7 @@
 (defwidget power []
     (button
         :onclick "hyprctl dispatch exec \"rofi -show power-menu -modi power-menu:rofi-power-menu\""
-        :class "power"
+        :class "power button-dark"
         (label :text "⏻")
     )
 )

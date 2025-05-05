@@ -4,6 +4,7 @@ $background-secondary: #444;
 $primary: #03c03c;
 $secondary: #ff1493;
 $primary-dark: #009F6B;
+$secondary-dark: #ba0063;
 
 * {
   all: unset;
@@ -176,6 +177,14 @@ scale trough {
 .player-artist {
   color: $primary-dark;
   margin: 0 0 0 8px;
+}
+
+.dark {
+  color: $secondary-dark;
+}
+
+.button-dark:hover label {
+  color: $secondary-dark;
 }
 
 menu {
