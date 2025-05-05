@@ -6,15 +6,12 @@ use hyprland::shared::HyprError;
 const N_WORKSPACES: usize = 5;
 const FOCUSED_WORKSPACE: &str = "(label \
                                     :text \"\" \
-                                    :class \"workspace\" \
                                  )";
 const ACTIVE_WORKSPACE: &str = "(label \
                                     :text \"\" \
-                                    :class \"workspace\" \
                                 )";
 const INACTIVE_WORKSPACE: &str = "(label \
                                     :text \"\" \
-                                    :class \"workspace\" \
                                   )";
 const LABEL_BUTTON: &str = "(button \
                             :onclick \"hyprctl dispatch workspace {id}\" \
@@ -24,7 +21,7 @@ const LABEL_BUTTON: &str = "(button \
 const OUTER_BOX: &str = "(box \
                              :orientation \"horizontal\" \
                              :class \"workspaces\" \
-                             :spacing 10 \
+                             :spacing 5 \
                              {} \
                           )";
 
