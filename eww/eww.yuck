@@ -352,7 +352,7 @@
 
 (defwindow volumecontrol
     :monitor 0
-    :geometry (geometry :x "100px"
+    :geometry (geometry :x "200px"
                         :y "0px"
                         :width "200px"
                         :height "100px"
