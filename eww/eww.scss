@@ -1,9 +1,9 @@
 $background: #111;
 $background-dark: #191926;
 $background-secondary: #444;
-$highlight: #03c03c;
-$highlight2: #ff1493;
-$light: #009F6B;
+$primary: #03c03c;
+$secondary: #ff1493;
+$primary-dark: #009F6B;
 
 * {
   all: unset;
@@ -21,7 +21,7 @@ $light: #009F6B;
 .volumecontrol {
   background-color: $background-dark;
   font-family: JetBrainsMono Nerd Font;
-  border-color: $light;
+  border-color: $primary-dark;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px;
@@ -30,7 +30,7 @@ $light: #009F6B;
 tooltip {
   background-color: $background;
   font-family: JetBrainsMono Nerd Font;
-  color: $light;
+  color: $primary-dark;
 }
 
 .generic-container {
@@ -38,12 +38,12 @@ tooltip {
 }
 
 .separator {
-  color: $highlight2;
+  color: $secondary;
 }
 
 .power {
   padding: 0 8px 0 4px;
-  color: $highlight
+  color: $primary
 }
 
 scale trough {
@@ -55,29 +55,29 @@ scale trough {
 }
 
 .netlabel {
-  color: $light;
+  color: $primary-dark;
 }
 
 .neticon {
   font-size: 16;
   margin: 0 8px 0 2px;
-  color: $highlight;
+  color: $primary;
 }
 
 .volslider trough highlight {
-  background-color: $light;
+  background-color: $primary-dark;
   border-radius: 10px;
 }
 
 .volicon {
   font-size: 16;
   margin: 0 12px 0 4px;
-  color: $highlight;
+  color: $primary;
 }
 
 .volumecontrol-volume {
   min-width: 180px;
-  color: $light;
+  color: $primary-dark;
 }
 
 .volumecontrol-volslider {
@@ -89,49 +89,49 @@ scale trough {
 }
 
 .volumecontrol-volslider trough highlight {
-  background-color: $highlight;
+  background-color: $primary;
   border-radius: 10px;
 }
 
 .volumecontrol-volicon {
   font-size: 30;
   margin: 0 24px 0 0;
-  color: $light;
+  color: $primary-dark;
 }
 
 .volumecontrol-micicon {
   font-size: 32;
   margin: 0 22px 0 0px;
-  color: $light;
+  color: $primary-dark;
 }
 
 .brightslider trough highlight {
-  background-color: $light;
+  background-color: $primary-dark;
   border-radius: 10px;
 }
 
 .brighticon {
   font-size: 16;
   margin: 0 10px 0 0;
-  color: $highlight;
+  color: $primary;
 }
 
 .batteryicon {
   font-size: 16;
-  color: $highlight;
+  color: $primary;
 }
 
 .timelabel {
-  color: $highlight;
+  color: $primary;
 }
 
 .datelabel {
   margin: 0 0 0 10px;
-  color: $light;
+  color: $primary-dark;
 }
 
 .workspaces {
-  color: $highlight;
+  color: $primary;
 }
 
 .workspaces button {
@@ -141,7 +141,7 @@ scale trough {
 .sysmonitor {
   background-color: $background-dark;
   font-family: JetBrainsMono Nerd Font;
-  border-color: $light;
+  border-color: $primary-dark;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px;
@@ -157,24 +157,24 @@ scale trough {
 
 .circular {
   background-color: $background-secondary;
-  color: $highlight;
+  color: $primary;
 }
 
 .circular label {
-  color: $light;
+  color: $primary-dark;
 }
 
 .player-controls {
-  color: $light;
+  color: $primary-dark;
   margin: 0 8px 0 0;
 }
 
 .player-title {
-  color: $highlight;
+  color: $primary;
 }
 
 .player-artist {
-  color: $light;
+  color: $primary-dark;
   margin: 0 0 0 8px;
 }
 
