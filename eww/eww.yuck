@@ -394,7 +394,7 @@
         :value {v}
         :thickness 5
         :start-at 75
-        (label :text {text})
+        (label :text {text} :justify "center") 
     )
 )
 
@@ -417,11 +417,11 @@
                 :class "sysmonitor-batram"
                 (generic-circular
                     :v {EWW_BATTERY.BAT0.capacity} 
-                    :text "Battery"
+                    :text "Battery\\n${EWW_BATTERY.BAT0.capacity}%"
                 )
                 (generic-circular
                     :v {EWW_RAM.used_mem_perc}
-                    :text "RAM"
+                    :text "RAM\\n${round(EWW_RAM.used_mem_perc, 2)}%"
                 )
             )
             (box
@@ -429,19 +429,19 @@
                 :spacing 8
                 (generic-circular
                     :v {EWW_CPU.cores[0].usage}
-                    :text "0"
+                    :text "core 0\\n${EWW_CPU.cores[0].usage}%"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[1].usage}
-                    :text "1"
+                    :text "core 1\\n${EWW_CPU.cores[1].usage}%"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[2].usage}
-                    :text "2"
+                    :text "core 2\\n${EWW_CPU.cores[2].usage}%"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[3].usage}
-                    :text "3"
+                    :text "core 3\\n${EWW_CPU.cores[3].usage}%"
                 )
             )
             (box
@@ -449,19 +449,19 @@
                 :spacing 8
                 (generic-circular
                     :v {EWW_CPU.cores[4].usage}
-                    :text "4"
+                    :text "core 4\\n${EWW_CPU.cores[4].usage}%"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[5].usage}
-                    :text "5"
+                    :text "core 5\\n${EWW_CPU.cores[5].usage}%"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[6].usage}
-                    :text "6"
+                    :text "core 6\\n${EWW_CPU.cores[6].usage}%"
                 )
                 (generic-circular
                     :v {EWW_CPU.cores[7].usage}
-                    :text "7"
+                    :text "core 7\\n${EWW_CPU.cores[7].usage}%"
                 )
             )
         )
