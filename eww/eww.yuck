@@ -98,7 +98,7 @@
             :space-evenly false
             (label 
                 :text ""
-                :class "brighticon ${brightness-slider ? "dark" : ""}"
+                :class "brighticon"
             )
             (revealer
                 :transition "slideleft"
