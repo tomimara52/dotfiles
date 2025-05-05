@@ -52,6 +52,11 @@
     "./workspaces/target/release/workspaces"
 )
 
+(deflisten systray-items
+    :initial 0
+    `./bin/systray.sh`
+)
+
 (defwidget volume []
     (eventbox
         :onhover "eww update volume-slider=true"
@@ -294,6 +299,7 @@
         (box
             :space-evenly false
             (generic-container
+                :visible {systray-items > 0}
                 (systray
                     :halign "center"
                     :icon-size 20 
