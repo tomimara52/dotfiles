@@ -15,6 +15,7 @@ const INACTIVE_WORKSPACE: &str = "(label \
                                   )";
 const LABEL_BUTTON: &str = "(button \
                             :onclick \"hyprctl dispatch workspace {id}\" \
+                            :onrightclick \"hyprctl dispatch workspace {id} && hyprctl dispatch togglespecialworkspace magic\" \
                             :class \"button-dark\" \
                             {label} \
                          )";
