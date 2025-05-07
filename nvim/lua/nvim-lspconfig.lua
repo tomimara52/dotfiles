@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Displays hover information about the symbol under the cursor
     -- call twice to jump to help window
-    bufmap('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>')
+    bufmap('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover({ border = "single" })<CR>')
 
     -- Jump to the definition
     bufmap('n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()<CR>')
@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     bufmap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>')
 
     -- Displays a function's signature information
-    bufmap('n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+    bufmap('n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help({ border = "single" })<CR>')
 
     -- Renames all references to the symbol under the cursor
     bufmap('n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>')
@@ -39,12 +39,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, { border = "single" }
-)
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, { border = "single" }
-)
 
 vim.diagnostic.config({float = {border= "single" }})
