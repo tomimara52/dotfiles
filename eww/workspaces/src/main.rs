@@ -1,3 +1,6 @@
+use std::cell::RefCell;
+use std::rc::Rc;
+
 use hyprland::event_listener::EventListener;
 use hyprland::data::{Monitor, Workspaces};
 use hyprland::prelude::*;
@@ -65,11 +68,11 @@ fn get_widgets(workspaces: Vec<WorkspaceState>) -> String {
     }))
 }
 
-fn print_widgets(special_activated: bool) {
+fn print_widgets(special_active: bool) {
     if let Ok(w) = get_workspaces_state() {
         let mut widgets = get_widgets(w);
 
-        if special_activated {
+        if special_active {
             widgets = widgets.replace("", "");
         }
 
@@ -81,14 +84,54 @@ fn main() -> hyprland::Result<()> {
     // print so eww can get an initial value
     print_widgets(false);
 
+    let special_active = Rc::new(RefCell::new(false));
+
     let mut event_listener = EventListener::new();
 
-    event_listener.add_workspace_changed_handler(|_data| print_widgets(false));
-    event_listener.add_workspace_added_handler(|_data| print_widgets(false));
-    event_listener.add_workspace_moved_handler(|_data| print_widgets(false));
-    event_listener.add_workspace_deleted_handler(|_data| print_widgets(false));
-    event_listener.add_changed_special_handler(|_data| print_widgets(true));
-    event_listener.add_special_removed_handler(|_data| print_widgets(false));
+    let new_ref = Rc::clone(&special_active);
+    event_listener.add_workspace_changed_handler(move |_data| {
+        if let Ok(special_active) = new_ref.try_borrow() {
+            print_widgets(*special_active);
+        }
+    });
+
+    let new_ref = Rc::clone(&special_active);
+    event_listener.add_workspace_added_handler(move |_data| { 
+        if let Ok(special_active) = new_ref.try_borrow() {
+            print_widgets(*special_active);
+        }
+    });
+
+    let new_ref = Rc::clone(&special_active);
+    event_listener.add_workspace_moved_handler(move |_data| {
+        if let Ok(special_active) = new_ref.try_borrow() {
+            print_widgets(*special_active);
+        }
+    });
+
+    let new_ref = Rc::clone(&special_active);
+    event_listener.add_workspace_deleted_handler(move |_data| {
+        if let Ok(special_active) = new_ref.try_borrow() {
+            print_widgets(*special_active);
+        }
+    });
+
+    let new_ref = Rc::clone(&special_active);
+    event_listener.add_changed_special_handler(move |_data| { 
+        if let Ok(mut special_active) = new_ref.try_borrow_mut() {
+            *special_active = true;
+            print_widgets(true);
+        }
+    });
+
+
+    let new_ref = Rc::clone(&special_active);
+    event_listener.add_special_removed_handler(move |_data| {
+        if let Ok(mut special_active) = new_ref.try_borrow_mut() {
+            *special_active = false;
+            print_widgets(false);
+        }
+    });
 
     event_listener.start_listener()?;
 
