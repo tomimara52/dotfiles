@@ -65,7 +65,7 @@
   require('lspconfig')['rust_analyzer'].setup {capabilities = capabilities}
   require('lspconfig')['hls'].setup {capabilities = capabilities}
   require('lspconfig')['intelephense'].setup {capabilities = capabilities}
-  require('lspconfig')['jedi_language_server'].setup {capabilities = capabilities}
+  require('lspconfig')['pyright'].setup {capabilities = capabilities}
   require('lspconfig')['lua_ls'].setup {
     on_init = function(client)
       local path = client.workspace_folders[1].name
