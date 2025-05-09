@@ -10,10 +10,11 @@ $secondary-dark: #ba0063;
   all: unset;
 }
 
+
 .statusbar {
-  background-color: $background-dark;
+  background-color: transparent;
   font-family: IosevkaTerm Nerd Font;
-  border-color: $background-dark;
+  border-color: transparent;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px;
@@ -35,6 +36,14 @@ tooltip {
   font-family: IosevkaTerm Nerd Font;
   font-size: 14;
   color: $primary-dark;
+}
+
+.main-container {
+  background-color: $background-dark;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: $background-dark;
 }
 
 .generic-container {

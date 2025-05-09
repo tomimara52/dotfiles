@@ -265,6 +265,7 @@
         :space-evenly false
         :spacing 10 
         :halign "end"
+        :class "main-container"
         (generic-container
             (net)
         )
@@ -298,6 +299,13 @@
         :class "statusbar"
         (box
             :space-evenly false
+            :class "main-container"
+            :halign "start"
+            :visible {
+                player-status == "Playing" 
+                || player-status == "Paused" 
+                || systray-items > 0
+            }
             (generic-container
                 :visible {systray-items > 0}
                 (systray
@@ -310,6 +318,7 @@
             (player-wrapper)
         )
         (generic-container 
+            :class "main-container"
             (literal :content {workspaces} :valign "center")
         )
         (right)
