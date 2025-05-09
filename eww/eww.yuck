@@ -321,9 +321,13 @@
         :halign "center"
         :class "volumecontrol-volume"
         :tooltip "Volume: ${volume}%"
-        (label 
-            :text {volume-muted ? "" : volume < 66 ? (volume < 33 ? "" : "") : ""}
-            :class "volumecontrol-volicon"
+        (button
+            :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+            :class "button-dark"
+            (label 
+                :text {volume-muted ? "" : volume < 66 ? (volume < 33 ? "" : "") : ""}
+                :class "volumecontrol-volicon"
+            )
         )
         (scale
             :class "volumecontrol-volslider"
@@ -347,9 +351,13 @@
         :halign "center"
         :class "volumecontrol-volume"
         :tooltip "Mic: ${mic}%"
-        (label 
-            :text {micmuted ? "" : ""} 
-            :class "volumecontrol-micicon"
+        (button
+            :onclick "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+            :class "button-dark"
+            (label 
+                :text {micmuted ? "" : ""} 
+                :class "volumecontrol-micicon"
+            )
         )
         (scale
             :class "volumecontrol-volslider"
