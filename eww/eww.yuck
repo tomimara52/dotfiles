@@ -236,7 +236,7 @@
 (defwidget generic-container [?visible ?class]
     (box
         :orientation "horizontal"
-        :class "generic-container ${class}"
+        :class "${class}"
         :space-evenly false
         :spacing 10
         :visible {visible ?: true}
