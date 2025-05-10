@@ -60,9 +60,9 @@ vim.keymap.set("n", "<C-D>", "<C-D>zz")
 vim.keymap.set("n", "<C-U>", "<C-U>zz")
 
 vim.cmd([[
-imap <expr> <C-s>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-s>'
-smap <expr> <C-s>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-s>'
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 
-imap <expr> <C-a>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-a>'
-smap <expr> <C-a>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-a>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 ]])
