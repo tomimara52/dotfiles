@@ -38,6 +38,7 @@ alias minesweeper="python3 ~/Documents/codes/console-minesweeper/main.py"
 alias emacs="emacsclient -nc -s instance1"
 alias emacst="emacsclient -t -s instance1"
 alias sensors="sensors && echo nvidia-temp && nvidia-settings -q gpucoretemp -t 2>/dev/null"
+alias sudoedit="sudo XDG_CONFIG_HOME=~/.config XDG_STATE_HOME=~/.local/state XDG_DATA_HOME=~/.local/share nvim -u .config/nvim/init.lua"
 
 export FZF_DEFAULT_OPTS='--tmux'
 eval "$(fzf --bash)"
