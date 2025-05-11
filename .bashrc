@@ -44,4 +44,8 @@ eval "$(fzf --bash)"
 
 source /usr/share/git/completion/git-completion.bash
 
+export EDITOR=nvim
+export VISUAL=$EDITOR
+
 #[ -f "/home/tomi/.ghcup/env" ] && source "/home/tomi/.ghcup/env" # ghcup-env
+
