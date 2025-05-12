@@ -158,6 +158,7 @@ return {
   },
   {
     'hrsh7th/vim-vsnip',
+    event = "InsertEnter",
     config = function()
       vim.cmd([[
         imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
@@ -166,9 +167,10 @@ return {
         imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
         smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
       ]])
-    end
+    end,
   },
   {
     'rafamadriz/friendly-snippets',
+    event = "InsertEnter",
   }
 }
