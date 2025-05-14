@@ -35,6 +35,9 @@ keybind = alt+b>x=close_surface
 keybind = alt+b>t=new_tab
 keybind = alt+b>q=close_tab
 
+keybind = alt+b>n=move_tab:1
+keybind = alt+b>m=move_tab:-1
+
 keybind = alt+b>1=goto_tab:1
 keybind = alt+b>2=goto_tab:2
 keybind = alt+b>3=goto_tab:3
