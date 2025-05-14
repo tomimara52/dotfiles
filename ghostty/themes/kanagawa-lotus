@@ -16,6 +16,7 @@ palette = 14=#5e857a
 palette = 15=#43436c
 
 background = f2ecbc
+window-titlebar-background = 43436c
 foreground = 545464
 cursor-color = 43436c
 selection-background = c9cbd1

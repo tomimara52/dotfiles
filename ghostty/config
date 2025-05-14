@@ -1,6 +1,6 @@
 font-family = "Iosevka Term"
 
-theme = kanagawa-wave
+theme = kanagawa-dragon
 
 background-opacity = 0.95
 
@@ -8,6 +8,7 @@ gtk-tabs-location = bottom
 gtk-wide-tabs = false
 
 window-decoration = server
+window-theme = ghostty
 
 auto-update = off
 
