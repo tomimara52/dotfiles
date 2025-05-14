@@ -7,8 +7,8 @@ return {
   opts = {
     highlight = { enable = true },
     indent = {
-      enable = true ,
-      disable = {'python', },
+      enable = true,
+      disable = { 'python', },
     },
     ensure_installed = {
       "bash",
