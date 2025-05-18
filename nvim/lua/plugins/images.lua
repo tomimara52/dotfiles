@@ -2,8 +2,6 @@
 return {
   "3rd/image.nvim",
   build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
-  event = "BufEnter *.md",
-  enabled = false,
   dependencies = {
     {
       'nvim-treesitter/nvim-treesitter',
@@ -26,11 +24,8 @@ return {
     window_overlap_clear_enabled = true,
     window_overlap_clear_ft_ignore = {},
   },
-  init = function()
-    local api = require("image")
-
-    vim.keymap.set("n", "<leader>ic", api.disable)
-    vim.keymap.set("n", "<leader>ir", api.enable)
-
-  end,
+  keys = {
+    { "<leader>ie", function() require('image').enable() end },
+    { "<leader>id", function() require('image').disable() end },
+  }
 }
