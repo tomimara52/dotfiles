@@ -283,9 +283,8 @@
 (defwindow statusbar
     :monitor 0
     :geometry (geometry :x "0%"
-                        :y "3px"
-                        :width "99.5%"
-                        :height "26px"
+                        :y "0%"
+                        :width "100%"
                         :anchor "top center")
     :exclusive true
     :namespace "statusbar"
