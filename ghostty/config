@@ -1,4 +1,7 @@
 font-family = "Iosevka Term"
+font-style-bold = "Heavy"
+font-style-italic = "Italic"
+font-style-bold-italic = "Heavy Italic"
 
 theme = kanagawa-dragon
 
