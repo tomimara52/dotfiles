@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+GHOSTTY_CONFIG=~/.config/ghostty/config
+NVIM_COLORSCHEME_CONFIG=~/.config/nvim/lua/plugins/colorscheme.lua
+
+sed -i -e "s/^theme = .*/theme = $1/" $GHOSTTY_CONFIG
+
+sed -i -e "s/vim.cmd([[colorscheme [a-zA-Z-]*]])/vim.cmd([[colorscheme $1]])/" $NVIM_COLORSCHEME_CONFIG
+
