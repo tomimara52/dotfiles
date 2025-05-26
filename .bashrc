@@ -45,6 +45,10 @@ alias nvc="nvim -u NONE \
     -c \"map q :q<CR>\" \
     -c \"autocmd VimEnter * normal G\" "
 
+if [[ $TERM == "xterm-kitty" ]] then
+    alias ssh="kitten ssh"
+fi
+
 
 export FZF_DEFAULT_OPTS='--tmux'
 eval "$(fzf --bash)"
