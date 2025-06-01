@@ -1,0 +1,58 @@
+font-family = "Iosevka Term"
+font-style-bold = "Heavy"
+font-style-italic = "Italic"
+font-style-bold-italic = "Heavy Italic"
+
+theme = kanagawa-dragon
+
+background-opacity = 0.95
+
+gtk-tabs-location = bottom
+gtk-wide-tabs = false
+
+window-decoration = server
+window-theme = ghostty
+
+auto-update = off
+
+keybind = alt+b>alt+h=new_split:left
+keybind = alt+b>alt+j=new_split:down
+keybind = alt+b>alt+k=new_split:up
+keybind = alt+b>alt+l=new_split:right
+
+keybind = alt+b>h=goto_split:left
+keybind = alt+b>j=goto_split:down
+keybind = alt+b>k=goto_split:up
+keybind = alt+b>l=goto_split:right
+
+keybind = shift+alt+h=resize_split:left,5
+keybind = shift+alt+j=resize_split:down,5
+keybind = shift+alt+k=resize_split:up,5
+keybind = shift+alt+l=resize_split:right,5
+keybind = shift+alt+e=equalize_splits
+
+keybind = alt+b>z=toggle_split_zoom
+
+keybind = alt+b>x=close_surface
+
+keybind = alt+b>t=new_tab
+keybind = alt+b>q=close_tab
+
+keybind = alt+b>n=move_tab:1
+keybind = alt+b>m=move_tab:-1
+
+keybind = alt+b>1=goto_tab:1
+keybind = alt+b>2=goto_tab:2
+keybind = alt+b>3=goto_tab:3
+keybind = alt+b>4=goto_tab:4
+keybind = alt+b>5=goto_tab:5
+keybind = alt+b>6=goto_tab:6
+keybind = alt+b>7=goto_tab:7
+keybind = alt+b>8=goto_tab:8
+keybind = alt+b>9=goto_tab:9
+
+keybind = alt+b>{=write_screen_file:paste
+
+keybind = ctrl+shift+r=reload_config
+
+unfocused-split-opacity = 1

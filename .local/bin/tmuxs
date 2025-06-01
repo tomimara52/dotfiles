@@ -1,0 +1,80 @@
+#!/bin/bash
+
+function ing1-lab() {
+    tmux new-session -d -s ing1-lab -n "editor"
+
+    tmux send-keys -t ing1-lab:editor "cd ~/Documents/FAMAF/ingenieria-software-1/frontend/" Enter
+    tmux send-keys -t ing1-lab:editor "clear" Enter
+
+    tmux new-window -t ing1-lab -n "server"
+    tmux send-keys -t ing1-lab:server "cd ~/Documents/FAMAF/ingenieria-software-1/frontend/" Enter
+    tmux send-keys -t ing1-lab:server "clear" Enter
+
+    tmux split-window -v -t ing1-lab:server
+    tmux send-keys -t ing1-lab:server.1 "cd ~/Documents/FAMAF/ingenieria-software-1/backend/" Enter
+    tmux send-keys -t ing1-lab:server.1 "source .venv/bin/activate" Enter
+    tmux send-keys -t ing1-lab:server.1 "clear" Enter
+}
+
+function arq() {
+    tmux new-session -d -s arq
+
+    tmux send-keys -t arq:0 "cd ~/Documents/FAMAF/arq-computadoras/lab2" Enter
+    tmux send-keys -t arq:0 "clear" Enter
+}
+
+function bd() {
+    tmux new-session -d -s bd -n "editor"
+
+    tmux send-keys -t bd:editor "cd ~/Documents/FAMAF/bases-de-datos/" Enter
+    tmux send-keys -t bd:editor "clear" Enter
+
+    tmux new-window -t bd -n "mariadb"
+    tmux send-keys -t bd:mariadb "cd ~/Documents/FAMAF/bases-de-datos/" Enter
+    tmux send-keys -t bd:mariadb "clear" Enter
+}
+
+function mod() {
+    tmux new-session -d -s mod -n "run"
+
+    tmux send-keys -t mod:run "cd ~/Documents/FAMAF/modelos" Enter
+    tmux send-keys -t mod:run "source .venv/bin/activate" Enter
+    tmux send-keys -t mod:run "clear" Enter
+
+    tmux new-window -t mod -n "editor"
+    tmux send-keys -t mod:editor "cd ~/Documents/FAMAF/modelos/" Enter
+    tmux send-keys -t mod:editor "source .venv/bin/activate" Enter
+    tmux send-keys -t mod:editor "clear" Enter
+}
+
+function cp() {
+    tmux new-session -d -s cp -n "local-editor"
+
+    tmux send-keys -t cp:local-editor "cd ~/Documents/FAMAF/computacion-paralela/lab" Enter
+    tmux send-keys -t cp:local-editor "clear" Enter
+
+    tmux new-window -t cp -n "local-shell"
+    tmux send-keys -t cp:local-shell "cd ~/Documents/FAMAF/computacion-paralela/lab" Enter
+    tmux send-keys -t cp:local-shell "clear" Enter
+
+    tmux new-window -t cp -n "atom-editor"
+    tmux send-keys -t cp:atom-editor "ssh cp2025_021@atom.famaf.unc.edu.ar" Enter
+
+    tmux new-window -t cp -n "atom-shell"
+    tmux send-keys -t cp:atom-shell "ssh cp2025_021@atom.famaf.unc.edu.ar" Enter
+}
+
+AVAILABLE_SESSIONS=(ing1-lab arq bd mod cp)
+
+if [[ " ${AVAILABLE_SESSIONS[*]} " =~ [[:space:]]$1[[:space:]] ]]; then
+    tmux has-session -t $1  2> /dev/null
+
+    if [[ $? == 1 ]]; then
+        $1
+    fi
+
+    tmux attach-session -t $1
+else
+    echo -n "Available sessions are: "
+    echo ${AVAILABLE_SESSIONS[*]} | sed "s/\([A-Za-z0-9-]\) \([A-Za-z0-9-]\)/\1, \2/g"
+fi

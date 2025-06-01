@@ -1,0 +1,11 @@
+//@theme "/usr/share/rofi/themes/fancy.rasi"
+
+//@theme "/usr/share/rofi/themes/Monokai.rasi"
+
+@theme "/usr/share/rofi/themes/android_notification.rasi"
+
+configuration {
+    show-icons: true;
+    hover-select: true;
+    me-accept-entry: "!MousePrimary";
+}

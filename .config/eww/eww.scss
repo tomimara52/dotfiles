@@ -1,0 +1,207 @@
+$background: #111;
+$background-dark: #191926;
+$background-secondary: #444;
+$primary: #03c03c;
+$secondary: #ff1493;
+$primary-dark: #009F6B;
+$secondary-dark: #ba0063;
+
+* {
+  all: unset;
+}
+
+
+.statusbar {
+  background-color: $background-dark;
+  font-family: IosevkaTerm Nerd Font;
+  font-size: 14;
+}
+
+.volumecontrol {
+  background-color: $background-dark;
+  font-family: IosevkaTerm Nerd Font;
+  font-size: 14;
+  border-color: $primary-dark;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+
+tooltip {
+  background-color: $background;
+  font-family: IosevkaTerm Nerd Font;
+  font-size: 14;
+  color: $primary-dark;
+}
+
+.main-container {
+  background-color: $background-dark;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: $background-dark;
+}
+
+.separator {
+  color: $secondary;
+}
+
+.power {
+  padding: 0 8px 0 4px;
+  color: $primary
+}
+
+scale trough {
+  all: unset;
+  background-color: $background-secondary;
+  border-radius: 16px;
+  min-height: 5px;
+  min-width: 50px;
+}
+
+.netlabel {
+  color: $primary-dark;
+}
+
+.neticon {
+  font-size: 16;
+  margin: 0 8px 0 2px;
+  color: $primary;
+}
+
+.volslider trough highlight {
+  background-color: $primary-dark;
+  border-radius: 10px;
+}
+
+.volicon {
+  font-size: 16;
+  margin: 0 12px 0 4px;
+  color: $primary;
+}
+
+.volumecontrol-volume {
+  min-width: 180px;
+  color: $primary-dark;
+}
+
+.volumecontrol-volslider {
+  margin: 0 10px 0 0;
+}
+
+.volumecontrol-volslider trough slider {
+  min-height: 12px;
+}
+
+.volumecontrol-volslider trough highlight {
+  background-color: $primary;
+  border-radius: 10px;
+}
+
+.volumecontrol-volicon {
+  font-size: 30;
+  margin: 0 24px 0 0;
+  color: $primary-dark;
+}
+
+.volumecontrol-micicon {
+  font-size: 32;
+  margin: 0 22px 0 0px;
+  color: $primary-dark;
+}
+
+.brightslider trough highlight {
+  background-color: $primary-dark;
+  border-radius: 10px;
+}
+
+.brighticon {
+  font-size: 16;
+  margin: 0 10px 0 0;
+  color: $primary;
+}
+
+.batteryicon {
+  font-size: 16;
+  color: $primary;
+}
+
+.timelabel {
+  color: $primary;
+}
+
+.datelabel {
+  margin: 0 0 0 10px;
+  color: $primary-dark;
+}
+
+.workspaces {
+  color: $primary;
+}
+
+.workspaces button {
+  padding: 0 10px 0 4px;
+  min-width: 14px;
+}
+
+.sysmonitor {
+  background-color: $background-dark;
+  font-family: IosevkaTerm Nerd Font;
+  font-size: 14;
+  border-color: $primary-dark;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+
+.sysmonitor-batram {
+  margin: 15px 0 15px 0;
+}
+
+.sysmonitor-cpu {
+  margin: 0px 8px 0px 8px;
+}
+
+.circular {
+  background-color: $background-secondary;
+  color: $primary;
+}
+
+.circular label {
+  color: $primary-dark;
+}
+
+.player-controls {
+  color: $primary-dark;
+  margin: 0 8px 0 0;
+}
+
+.player-title {
+  color: $primary;
+}
+
+.player-artist {
+  color: $primary-dark;
+  margin: 0 0 0 8px;
+}
+
+.dark {
+  color: $secondary-dark;
+}
+
+.button-dark:hover label {
+  color: $secondary-dark;
+}
+
+menu {
+  background-color: $background-dark;
+  padding: 10px;
+
+  menuitem {
+    background-color: $background-dark;
+  }
+
+  menuitem:hover {
+    background-color: $background-secondary;
+  }
+}
