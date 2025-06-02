@@ -114,23 +114,31 @@ return {
 
       -- Set up lspconfig.
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      vim.lsp.config('*', { capabilities = capabilities })
 
-      require('lspconfig')['clangd'].setup {capabilities = capabilities}
-      require('lspconfig')['ts_ls'].setup {capabilities = capabilities}
-      require('lspconfig')['eslint'].setup({
-        on_attach = function(_, bufnr)
+      vim.lsp.enable('clangd')
+      vim.lsp.enable('ts_ls')
+
+      local base_on_attach = vim.lsp.config.eslint.on_attach
+      vim.lsp.config('eslint', {
+        on_attach = function(client, bufnr)
+          if not base_on_attach then return end
+
+          base_on_attach(client, bufnr)
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
-            command = "EslintFixAll",
+            command = "LspEslintFixAll",
           })
         end,
       })
-      require('lspconfig')['html'].setup {capabilities = capabilities}
-      require('lspconfig')['rust_analyzer'].setup {capabilities = capabilities}
-      require('lspconfig')['hls'].setup {capabilities = capabilities}
-      require('lspconfig')['intelephense'].setup {capabilities = capabilities}
-      require('lspconfig')['pyright'].setup {capabilities = capabilities}
-      require('lspconfig')['lua_ls'].setup {
+      vim.lsp.enable('eslint')
+
+      vim.lsp.enable('html')
+      vim.lsp.enable('rust_analyzer')
+      vim.lsp.enable('hls')
+      vim.lsp.enable('pyright')
+      vim.lsp.enable('intelephense')
+      vim.lsp.config('lua_ls', {
         on_init = function(client)
           local path = client.workspace_folders[1].name
           if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
@@ -153,7 +161,8 @@ return {
           Lua = {}
         },
         capabilities = capabilities
-      }
+      })
+      vim.lsp.enable('lua_ls')
     end
   },
   {
