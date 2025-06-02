@@ -6,18 +6,22 @@ def mod(boss: Boss):
     boss.call_remote_control(boss.active_window, ('close-tab', '--match', 'all'))
     boss.call_remote_control(boss.active_window, ('launch', '--type', 'tab', '--tab-title', 'editor', '--cwd', '~/Documents/FAMAF/modelos/'))
     boss.call_remote_control(boss.active_window, ('send-text', 'source .venv/bin/activate\nclear\n'))
+def mod(boss: Boss):
+    boss.call_remote_control(boss.active_window, ('close-tab', '--match', 'all'))
     boss.call_remote_control(boss.active_window, ('launch', '--type', 'tab', '--tab-title', 'run', '--cwd', '~/Documents/FAMAF/modelos/'))
     boss.call_remote_control(boss.active_window, ('send-text', 'source .venv/bin/activate\nclear\n'))
-    boss.call_remote_control(boss.active_window, ('focus-tab', '--match', 'index:1'))
+    boss.call_remote_control(boss.active_window, ('launch', '--type', 'tab', '--tab-title', 'editor', '--cwd', '~/Documents/FAMAF/modelos/'))
+    boss.call_remote_control(boss.active_window, ('send-text', 'source .venv/bin/activate\nclear\n'))
+    boss.call_remote_control(boss.active_window, ('action', 'move_tab_forward'))
 
 
 def cp(boss: Boss):
     boss.call_remote_control(boss.active_window, ('close-tab', '--match', 'all'))
-    boss.call_remote_control(boss.active_window, ('launch', '--type', 'tab', '--tab-title', 'local-editor', '--cwd', '~/Documents/FAMAF/computacion-paralela/'))
     boss.call_remote_control(boss.active_window, ('launch', '--type', 'tab', '--tab-title', 'local-run', '--cwd', '~/Documents/FAMAF/computacion-paralela/'))
     boss.call_remote_control(boss.active_window, ('launch', '--type', 'tab', '--tab-title', 'atom', '--cwd', '~/Documents/FAMAF/computacion-paralela/'))
     boss.call_remote_control(boss.active_window, ('send-text', 'ssh atom\n'))
-    boss.call_remote_control(boss.active_window, ('focus-tab', '--match', 'index:1'))
+    boss.call_remote_control(boss.active_window, ('launch', '--type', 'tab', '--tab-title', 'local-editor', '--cwd', '~/Documents/FAMAF/computacion-paralela/'))
+    boss.call_remote_control(boss.active_window, ('action', 'move_tab_forward'))
 
 
 sessions_list = {
