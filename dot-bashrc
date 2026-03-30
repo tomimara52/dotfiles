@@ -47,6 +47,8 @@ alias nvc="nvim -u NONE \
 
 if [[ $TERM == "xterm-kitty" ]] then
     alias ssh="kitten ssh"
+    alias icat="kitten icat"
+    alias diff="kitten diff"
 fi
 
 
