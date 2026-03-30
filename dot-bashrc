@@ -35,8 +35,8 @@ PATH="$PATH:/home/tomi/.local/bin:/home/tomi/.ghcup/bin"
 
 alias snake="python3 ~/Documents/codes/console-snake/main.py"
 alias minesweeper="python3 ~/Documents/codes/console-minesweeper/main.py"
-alias emacs="emacsclient -nc -s instance1"
-alias emacst="emacsclient -t -s instance1"
+#alias emacs="emacsclient -nc -s instance1"
+#alias emacst="emacsclient -t -s instance1"
 alias sensors="sensors && echo nvidia-temp && nvidia-settings -q gpucoretemp -t 2>/dev/null"
 alias sudoedit="sudo XDG_CONFIG_HOME=~/.config XDG_STATE_HOME=~/.local/state XDG_DATA_HOME=~/.local/share nvim -u ~/.config/nvim/init.lua"
 alias nv=nvim
@@ -50,6 +50,8 @@ if [[ $TERM == "xterm-kitty" ]] then
     alias icat="kitten icat"
     alias diff="kitten diff"
 fi
+
+alias hbash='echo -e "Alt-f:  move forwards one word\nAlt-b:  move backwards one word\nCtrl-d: delete char under cursor\nCtrl-h: delete char before cursor\nCtrl-u: clear all before cursor\nCtrl-k: clear all after cursor\nCtrl-w: delete word before cursor\nAlt-d:  delete word from cursor"'
 
 
 export FZF_DEFAULT_OPTS='--tmux'
